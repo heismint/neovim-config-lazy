@@ -13,3 +13,5 @@ vim.api.nvim_set_keymap('n', '<leader>tv', ':vsplit | term<CR>', { noremap = tru
 -- Keybinding to close terminal buffer
 vim.api.nvim_set_keymap('t', '<leader>q', '<C-\\><C-n>:bd<CR>', { noremap = true, silent = true, desc = 'Close Terminal' })
 
+-- Map Delete key to delete selected text in visual mode
+vim.api.nvim_set_keymap('v', '<Del>', 'd', { noremap = true, silent = true })
