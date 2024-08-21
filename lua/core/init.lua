@@ -31,3 +31,12 @@ require("core.lsp")
 vim.schedule(function()
   require("core.mappings")
 end)
+
+-- Diagnostic settings
+vim.diagnostic.config({
+  virtual_text = true, -- Show errors inline
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+})
+
