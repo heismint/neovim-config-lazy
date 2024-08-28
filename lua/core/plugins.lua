@@ -100,5 +100,47 @@ return {
       })
     end
   },
-}
 
+-- Terraform support
+  {
+    "hashivim/vim-terraform",
+    config = function()
+      vim.g.terraform_align = 1
+      vim.g.terraform_fmt_on_save = 1
+    end,
+  },
+
+-- Kubernetes support
+  {
+    "b0o/SchemaStore.nvim",
+    "andrewstuart/vim-kubernetes",
+    config = function()
+      require("lspconfig").yamlls.setup {
+        settings = {
+          yaml = {
+            schemas = require("schemastore").yaml.schemas(),
+            validate = true,
+          },
+        },
+      }
+    end,
+  },
+
+  -- Docker support
+  {
+    "ekalinin/Dockerfile.vim",
+    "lspcontainers/lspcontainers.nvim",
+    config = function()
+      local lspconfig = require("lspconfig")
+      local lspcontainers = require("lspcontainers")
+
+      lspconfig.dockerls.setup {
+        cmd = lspcontainers.command("dockerls"),
+      }
+
+      lspconfig.docker_compose_language_service.setup {
+        cmd = lspcontainers.command("docker_compose_language_service"),
+      }
+    end,
+  },
+}
